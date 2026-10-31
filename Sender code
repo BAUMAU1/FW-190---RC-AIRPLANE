@@ -1,0 +1,111 @@
+// This code is written for the Gulikit KK3 Pro controller and may not work with every controller-protocol right off the bat
+// Two DX-LR03 antennas and two ESP32 S3 needed for connection.
+// Receiver ESP has its own code.
+// Wiring of the antennas:
+// M0 -> LOW, M1 -> HIGH, VCC -> 5V, TX -> Pin 18, RX -> Pin 17, GND -> GND
+
+#include "EspUsbHost.h"
+#include "DXLR03.h"
+
+EspUsbHost usb;
+DXLR03 lora(Serial1, 18, 17, 115200);
+
+struct controllerdata
+{
+  uint8_t RX;
+  uint8_t RY;
+  uint8_t LX;
+  uint8_t LY;
+  uint8_t ZR;
+  uint8_t ZL;
+  uint8_t Btna;
+  uint8_t Btnb;
+};
+
+controllerdata packet = {};
+
+void sendPacket()
+{
+  lora.send(reinterpret_cast<uint8_t *>(&packet), sizeof(packet));
+}
+
+void setup()
+{
+  Serial.begin(115200);
+  Serial.println("ESP-Sender gestartet");
+  delay(500);
+
+  usb.onDeviceConnected([](const EspUsbHostDeviceInfo &device)
+                        {
+                          bool connected = true;
+                          Serial.print("connected: ");
+                          espUsbHostPrint(device); });
+
+  usb.onDeviceDisconnected([](const EspUsbHostDeviceInfo &device)
+                           {
+                            bool connected = false;
+                             Serial.print("disconnected: ");
+                             espUsbHostPrint(device); });
+
+ 
+static uint32_t lastSend = 0;
+
+// for cable connection
+  //usb.onHIDInput([](const EspUsbHostHIDInput &event)
+  //{
+  // if (event.length < 9) 
+  //  {
+  //    return;
+  //  }
+
+
+  //  packet.RX = event.data[1]; //5
+  //  packet.RY = event.data[2]; //6
+  //  packet.LX = event.data[3];
+  //  packet.LY = event.data[4];
+  //  packet.ZR = event.data[7];
+  //  packet.ZL = event.data[8];
+  //  packet.Btna = (event.data[0] & 0x02) ? 1 : 0;
+  //  packet.Btnb = (event.data[0] & 0x01) ? 1 : 0;
+
+  //  Serial.printf("TX -> RX:%u RY:%u LX:%u LY:%u ZR:%u ZL:%u Btna:%u Btnb:%u\n",
+  //                packet.RX, packet.RY, packet.LX, packet.LY,
+  //                packet.ZR, packet.ZL, packet.Btna, packet.Btnb);
+
+  //  sendPacket();
+  //});
+
+// for dongle connection
+   usb.onHIDInput([](const EspUsbHostHIDInput &event)
+  {
+   if (event.length < 9) 
+    {
+      return;
+    }
+
+    packet.RX = event.data[1]; //5
+    packet.RY = event.data[2]; //6
+    packet.LX = event.data[3];
+    packet.LY = event.data[4];
+    packet.ZR = event.data[7];
+    packet.ZL = event.data[8];
+    packet.Btna = (event.data[0] & 0x02) ? 1 : 0;
+    packet.Btnb = (event.data[0] & 0x01) ? 1 : 0;
+
+    Serial.printf("TX -> RX:%u RY:%u LX:%u LY:%u ZR:%u ZL:%u Btna:%u Btnb:%u\n",
+                  packet.RX, packet.RY, packet.LX, packet.LY,
+                  packet.ZR, packet.ZL, packet.Btna, packet.Btnb);
+
+    sendPacket();
+  });
+  if (!usb.begin())
+  {
+    Serial.printf("usb.begin() failed: %s\n", usb.lastErrorName());
+  }
+
+}
+void loop()
+{
+  lora.poll();
+  delay(5);
+}
