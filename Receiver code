@@ -1,0 +1,171 @@
+// Two DX-LR03 antennas and two ESP32 S3 needed for connection.
+// Sender ESP has its own code.
+// If pcb is used, just follow the instructions on pcb, if not the wiring is as follows:
+// M0 -> LOW, M1 -> HIGH, VCC -> 5V, TX -> Pin 18, RX -> Pin 17, GND -> GND
+
+
+#include <Arduino.h>
+#include <string.h>
+#include "DXLR03.h"
+#include <ESP32Servo.h>
+
+Servo pitch;
+Servo yaw;
+Servo rollL;
+Servo rollR;
+Servo motor;
+Servo GearL;
+Servo GearR;
+
+int BtnaOld = 0;
+bool gear = false;
+bool failsafe = false;
+
+DXLR03 lora(Serial1, 18, 17, 115200);
+
+struct controllerdata
+{
+  uint8_t RX;
+  uint8_t RY;
+  uint8_t LX;
+  uint8_t LY;
+  uint8_t ZR;
+  uint8_t ZL;
+  uint8_t Btna;
+  uint8_t Btnb;
+};
+
+controllerdata packet = {};
+
+ int buttonolda = 0;
+ int buttonoldb = 0; 
+ int b = 90;
+ int a = 90;
+
+void onRxDone(uint8_t *d, uint16_t len)
+{
+  if (len >= sizeof(packet))
+  {
+    memcpy(&packet, d, sizeof(packet));
+  }
+
+  // For test purposes
+  Serial.printf("Received packet: RX:%u RY:%u LX:%u LY:%u ZR:%u ZL:%u Btna:%u Btnb:%u\n",
+              packet.RX, packet.RY, packet.LX, packet.LY,
+           packet.ZR, packet.ZL, packet.Btna, packet.Btnb);
+  delay(10);
+  lora.startReceive(1000);
+
+  BtnaOld = packet.Btna;
+  int ly = map(packet.LY, 0, 255, 60, 120);
+  int rx = map(packet.RX, 0, 255, 60, 120);
+  int lx = map(packet.LX, 0, 255, 60, 120);
+
+   if (packet.Btna < buttonolda && gear == true)
+  {
+    gear = false;
+  }
+  else if(buttonolda < packet.Btna && gear == false)
+  {
+   gear = true;
+  }
+  if ( gear == true){
+   a = a + 1;
+  }
+  else{
+   a = a - 1;
+  }
+  if(a > 180){
+   a = 180;
+  }
+  else if(a < 90){
+   a = 90;
+  }
+ buttonolda = packet.Btna;
+
+  if (packet.Btnb < buttonoldb && gear == true)
+  {
+    gear = false;
+  }
+  else if(buttonoldb < packet.Btnb && gear == false)
+  {
+   gear = true;
+  }
+  if ( gear == true){
+   b = b + 1;
+  }
+  else{
+   b = b - 1;
+  }
+  if(b > 60){
+   b = 60;
+  }
+  else if(b < 120){
+   b = 120;
+  }
+ buttonoldb = packet.Btnb;
+
+  pitch.write(ly);
+  yaw.write(rx);
+  rollL.write(lx+b);
+  rollR.write(lx+b);
+  motor.write(packet.ZR);
+  GearL.write(a);
+  GearR.write(a);
+}
+
+void onTimeout()
+{
+  Serial.println("No packet received within timeout");
+  lora.startReceive(1000);
+}
+
+void Failsafe()
+{
+ if(packet.Btna > 1 || packet.LX == 0 && packet.LY == 0)
+ {
+  bool failsafe = true;
+  pitch.write(100);
+  yaw.write(90);
+  rollL.write(100);
+  rollR.write(100);
+  motor.write(0);
+  GearL.write(180); 
+  GearR.write(180);
+ }
+
+ if(failsafe == true){
+  lora.startReceive(1000);
+  ESP.restart();
+  delay(500);
+  failsafe = false;
+ }
+ failsafe = false;
+}
+
+void setup()
+{
+  motor.attach(21);
+  GearL.attach(9);
+  GearR.attach(11);
+  rollL.attach(10);
+  rollR.attach(12);
+  yaw.attach(13);
+  pitch.attach(14);
+  Serial.begin(115200);
+  Serial.println("ESP-Empfänger gestartet");
+
+  lora.onRxDone(onRxDone);
+  lora.onRxTimeout(onTimeout);
+
+  lora.setExpect(nullptr, 0);
+
+  Serial.println("Receiver initialisiert, warte auf Daten");
+  lora.startReceive(1000);
+}
+
+void loop()
+{
+  lora.poll();
+  delay(1);
+}
