@@ -1,4 +1,4 @@
-# FW-190---RC-AIRPLANE
-I am currently working on my radio controlled aircraft, that looks just like the german WW2 fighter FW 190.
-Once finished, I will post everything needed and what I used for this build, so you can build it yourself if you want.
-This is my first ever project of this kind so I will probably have made some mistakes or not the best choice. So if you have an idea of what to do better just comment it :)
+This is the repository for a DIY 3D-printable airplane with the looks of the german WW2 fighter FW190.
+On here you can find everything necessary to build one yourself, aswell as a detailed description of the planes functions.
+
+
