@@ -10,15 +10,14 @@
 #include <ESP32Servo.h>
 
 Servo pitch;
-Servo yaw;
 Servo rollL;
 Servo rollR;
 Servo motor;
 Servo GearL;
 Servo GearR;
 
-int BtnaOld = 0;
 bool gear = false;
+bool bremse = false;
 bool failsafe = false;
 
 DXLR03 lora(Serial1, 18, 17, 115200);
@@ -41,6 +40,7 @@ controllerdata packet = {};
  int buttonoldb = 0; 
  int b = 90;
  int a = 90;
+ int zr = 0;
 
 void onRxDone(uint8_t *d, uint16_t len)
 {
@@ -56,62 +56,55 @@ void onRxDone(uint8_t *d, uint16_t len)
   delay(10);
   lora.startReceive(1000);
 
-  BtnaOld = packet.Btna;
   int ly = map(packet.LY, 0, 255, 60, 120);
-  int rx = map(packet.RX, 0, 255, 60, 120);
   int lx = map(packet.LX, 0, 255, 60, 120);
+  int zr = map(packet.ZR, 0, 255, 0, 900);
 
-   if (packet.Btna < buttonolda && gear == true)
+  if(packet.LX >120 && packet.LX < 130)
   {
-    gear = false;
+    lx = 90;
   }
-  else if(buttonolda < packet.Btna && gear == false)
+    if(packet.LY >120 && packet.LY < 130)
   {
-   gear = true;
+    ly = 90;
   }
-  if ( gear == true){
-   a = a + 1;
+
+   if (packet.Btna > buttonolda)
+  {
+    gear = !gear;
   }
-  else{
-   a = a - 1;
+  if (gear == true)
+  {
+    a = 180;
   }
-  if(a > 180){
-   a = 180;
-  }
-  else if(a < 90){
-   a = 90;
-  }
+ else
+ {
+  a = 90;
+ }
  buttonolda = packet.Btna;
 
-  if (packet.Btnb < buttonoldb && gear == true)
+  if (packet.Btnb > buttonoldb)
   {
-    gear = false;
+    bremse = !bremse;
   }
-  else if(buttonoldb < packet.Btnb && gear == false)
+  if(bremse == true)
   {
-   gear = true;
+    b = 30;
   }
-  if ( gear == true){
-   b = b + 1;
-  }
-  else{
-   b = b - 1;
-  }
-  if(b > 60){
-   b = 60;
-  }
-  else if(b < 120){
-   b = 120;
+  else
+  {
+    b = 0;
   }
  buttonoldb = packet.Btnb;
 
   pitch.write(ly);
-  yaw.write(rx);
   rollL.write(lx+b);
   rollR.write(lx+b);
-  motor.write(packet.ZR);
+  motor.write(zr);
   GearL.write(a);
   GearR.write(a);
+
+  Serial.printf("lx: %d, ly: %d, a: %d, b: %d\n", lx, ly, a, b);
 }
 
 void onTimeout()
@@ -122,13 +115,12 @@ void onTimeout()
 
 void Failsafe()
 {
- if(packet.Btna > 1 || packet.LX == 0 && packet.LY == 0)
+ if(packet.LX == 0 && packet.LY == 0)
  {
   bool failsafe = true;
   pitch.write(100);
-  yaw.write(90);
-  rollL.write(100);
-  rollR.write(100);
+  rollL.write(110);
+  rollR.write(70);
   motor.write(0);
   GearL.write(180); 
   GearR.write(180);
@@ -145,12 +137,12 @@ void Failsafe()
 
 void setup()
 {
-  motor.attach(21);
+  // yaw on pin 13
+  motor.attach(21,1000,2000);
   GearL.attach(9);
   GearR.attach(11);
   rollL.attach(10);
   rollR.attach(12);
-  yaw.attach(13);
   pitch.attach(14);
   Serial.begin(115200);
   Serial.println("ESP-Empfänger gestartet");
