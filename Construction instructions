@@ -1,2 +1,7 @@
 Step 1:
-Printing all necessary parts
+Printing all necessary parts.
+Use the bambu slicer file or print the parts using the 3d model.
+This step will probably take several days.
+Step 2:
+Setting up the electronics.
+Solder the necessary joints and pcb, then wire all components
