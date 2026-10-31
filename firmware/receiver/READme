@@ -1,0 +1,4 @@
+The Maincode is to be flashed on an ESP32 S3 CAM.
+The code receives the radio signals from the transmitter, adjusts the numbers and steers the servos in the airplane.
+
+The DX-LR03 library is needed in order for the main code to work.
