@@ -1,0 +1,11 @@
+To build one, the following things are needed:
+-Lightweight-filament (I did it with ASA Aero)
+-Normal PLA/PETG filament
+-3d printer capable of printing engineering filaments
+- 4 micro-servos (mg90s) + Miuzei MS18
+-two DX-LR03 Antennas
+-two ESP32 S3 CAM
+-Heat brass inserts ( 8x M2; 4x M3; 2x M4 )
+-Screws corresponding to the brass inserts + 6x screws for 3d prints
+-Spring steel wire (2,5mm x1m; 1,5mm x1m)
+-
