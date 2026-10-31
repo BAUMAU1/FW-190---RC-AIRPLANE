@@ -1,0 +1,4 @@
+The Maincode is to be flashed on an ESP32 S3 CAM.
+The code will host a controller via cable connection and send the received data to the receiving ESP32 per antenna.
+
+Both librarys are needed in order for the main code to work.
