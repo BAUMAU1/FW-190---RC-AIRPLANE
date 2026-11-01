@@ -1,2 +1,5 @@
+I programmed this in VS Code with the Arduino extension.
+
+DISCLAIMER:
 The EspUsbHost library and DX-LR03 library are not mine.
 I only used them and now have them here, so anyone wanting to build the airplane has it easier.
