@@ -56,4 +56,4 @@ Glue the twirly gears with the small nub on the end of the 27,25cm with 1cm of d
 
 Shove the carbon tube into one of the wings trough the hole in the structure, place the wing on the correct side of the planes hull-middle-piece and align the edges.
 Shove the 27,25cm wire piece through the small hole at the wings back with the twirly gear inside the hull and laid on the small structure in the hulls middle.
-![Construction instructions.md](images/Winghull.png)
+![Construction instructions.md](images/winghull.png)
