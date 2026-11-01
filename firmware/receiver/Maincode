@@ -16,7 +16,7 @@ Servo motor;
 Servo GearL;
 Servo GearR;
 
-bool gear = false;
+bool gear = true;
 bool bremse = false;
 bool failsafe = false;
 
@@ -41,6 +41,7 @@ controllerdata packet = {};
  int b = 90;
  int a = 90;
  int zr = 0;
+ int aa = 90;
 
 void onRxDone(uint8_t *d, uint16_t len)
 {
@@ -57,12 +58,14 @@ void onRxDone(uint8_t *d, uint16_t len)
   lora.startReceive(1000);
 
   int ly = map(packet.LY, 0, 255, 60, 120);
-  int lx = map(packet.LX, 0, 255, 60, 120);
+  int lxr = map(packet.LX, 0, 255, 120, 60);
+  int lxl = map(packet.LX, 0, 255, 120, 60);
   int zr = map(packet.ZR, 0, 255, 0, 900);
 
   if(packet.LX >120 && packet.LX < 130)
   {
-    lx = 90;
+    lxl = 90;
+    lxr = 90;
   }
     if(packet.LY >120 && packet.LY < 130)
   {
@@ -76,10 +79,12 @@ void onRxDone(uint8_t *d, uint16_t len)
   if (gear == true)
   {
     a = 180;
+    aa = 0;
   }
  else
  {
   a = 90;
+  aa = 90;
  }
  buttonolda = packet.Btna;
 
@@ -98,13 +103,13 @@ void onRxDone(uint8_t *d, uint16_t len)
  buttonoldb = packet.Btnb;
 
   pitch.write(ly);
-  rollL.write(lx+b);
-  rollR.write(lx+b);
+  rollL.write(lxl+b);
+  rollR.write(lxr-b);
   motor.write(zr);
   GearL.write(a);
-  GearR.write(a);
+  GearR.write(aa);
 
-  Serial.printf("lx: %d, ly: %d, a: %d, b: %d\n", lx, ly, a, b);
+  Serial.printf("lx: %d, ly: %d, a: %d, b: %d\n", lxl, ly, a, b);
 }
 
 void onTimeout()
