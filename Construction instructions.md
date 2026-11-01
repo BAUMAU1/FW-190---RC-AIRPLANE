@@ -5,6 +5,7 @@ This step will probably take several days.
 
 Step 2:
 Setting up the electronics.
+
 Deconstruct the MS18 servo and solder 10cm long wires from the motor to the servo-pcb and the same for the potentiometer.
 ![Construction instructions.md](images/Servo%20deconstructed.jpg)
 Solder a 9v-battery connector to a wire and then on the voltage step-down converter, then solder two female headers for each output vcc and gnd on the converter.
