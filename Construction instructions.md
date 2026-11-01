@@ -67,3 +67,5 @@ Then align the wings edge-pieces and glue them on their correct wing with the 3D
 
 Align the back part of the hull with the middle part and glue them together using the 3D-print glue.
 
+!Rest of the instructions will follow when the airplane is polished!
+
