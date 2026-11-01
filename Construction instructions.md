@@ -32,4 +32,4 @@ Srew the small wing covers on, once the servos are in place.
 Screw the motor on the nose using M3 screws.
 
 Screw the servos in the wings using one 3D-print screw on the accessible side with the gear already attached to them.
-![Construction instructions.md](images/.jpg)
+![Construction instructions.md](images/Wing%20servo.jpg)
