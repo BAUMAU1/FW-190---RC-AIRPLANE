@@ -12,10 +12,10 @@ Solder 10cm long wires from the motor to the servo-pcb and the same for the pote
 ![Construction instructions.md](images/Servo%20deconstructed.jpg)
 Solder a 9v-battery connector to a wire and then on the voltage step-down converter, then solder two female headers for each output vcc and gnd on the converter.
 
-Solder the pins on pcb and esp32 if necessary.
+Solder the pins on pcb and esp32 if necessary - socket strips for esp32 and antenna (both on on pcb), pin headers for the rest.
 
 Step 3:
-Preparing the rest of the hardware-stuff.
+Preparing and assymbling the rest of the hardware-stuff.
 
 Insert the heat-brass inserts:
 
@@ -25,7 +25,7 @@ Once finished, screw the pcb on the electronics-tray, with the ESC-pins facing t
 
 Screw the motor on the nose using M3 screws.
 
-Cut the 2,6mm spring steel wire into 2x 27,25mm ; 2x 6,5mm and 1x 23,7mm pieces.
+Cut the 2,6mm spring steel wire into 2x 27,25cm ; 2x 6,5cm and 1x 23,7cm pieces.
 
 Cut the 1,5mm wire into 2x 1,28mm and 1x 4mm pieces.
 
@@ -36,7 +36,7 @@ Bend the two 6,5cm long 2,6mm wire pieces around the 5cm mark, so there is a 90Â
 Make dents on the parts of the wire pieces, where they are attached to something:
 
 The last cm on the 27,25cm pieces and 4cm on the other ends.
-About 5mm in the middle of the 23,7mm piece and 2cm on both ends.
+About 5mm in the middle of the 23,7cm piece and 2cm on both ends.
 The long ends of the bent pieces, aswell as the very end of the short part.
 
 Shove the long end of the bent wire pieces in the hole of the gearstick with hot glue; make sure there is a 90Â° angle on both sides of the bent pice relative to the gearstick.
@@ -52,4 +52,8 @@ Put the wheels on the gears and secure them by adding hot glue on the end of the
 
 Funnel the servos headers through the small rectangular opening in the wing structure.
 
+Glue the twirly gears with the small nub on the end of the 27,25cm with 1cm of dents.
 
+Shove the carbon tube into one of the wings trough the hole in the structure, place the wing on the correct side of the planes hull-middle-piece and align the edges.
+Shove the 27,25cm wire piece through the small hole at the wings back with the twirly gear inside the hull and laid on the small structure in the hulls middle.
+![Construction instructions.md](images/Winghull.png)
