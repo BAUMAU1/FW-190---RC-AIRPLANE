@@ -1,4 +1,4 @@
-                                                            FW 190 - RC Airplane
+                                                   FW 190 - RC Airplane
 
 A DIY 3D-printable airplane with the looks of the german WW2 fighter FW190.
 On here you can find everything necessary to build one yourself, aswell as a description of the planes functions.
