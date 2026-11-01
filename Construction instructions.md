@@ -31,6 +31,8 @@ Cut the 1,5mm wire into 2x 1,28mm and 1x 4mm pieces.
 
 Cut the carbon tube into one 24cm piece.
 
+Bend the 1,5mm x 4mm wire piece, so the small wheel can sit at the bottom of a wire in the form of a "U" , with 1,5cm pointing away from the wheel on both sides.
+
 Bend the two 6,5cm long 2,6mm wire pieces around the 5cm mark, so there is a 90° angle.
 
 Make dents on the parts of the wire pieces, where they are attached to something:
@@ -57,3 +59,11 @@ Glue the twirly gears with the small nub on the end of the 27,25cm with 1cm of d
 Shove the carbon tube into one of the wings trough the hole in the structure, place the wing on the correct side of the planes hull-middle-piece and align the edges.
 Shove the 27,25cm wire piece through the small hole at the wings back with the twirly gear inside the hull and laid on the small structure in the hulls middle.
 ![Construction instructions.md](images/winghull.png)
+Then shove the other wing on the carbon tube thats looking out the other side and add the other 27,25cm wire pice in the same way as the first one.
+
+Once everything is aligned, glue the wings and hull together with the 3D-print glue.
+
+Then align the wings edge-pieces and glue them on their correct wing with the 3D-print glue.
+
+Align the back part of the hull with the middle part and glue them together using the 3D-print glue.
+
