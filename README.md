@@ -20,7 +20,7 @@ How the plane works:
 -The electronics tray on which the pcb is mounted is fully removable and holds the battery and ESC-controller.
 
 !!!The airplane is not 100% finished - the elevator flap mechanism is designed but not built to completion!!!
-           Completion of the description of the unfinished parts on this repository will follow
+         Completion of the unfinished parts on this repository will follow when airplane is polished
 
 For anyone reviewing this on stardance:
 The back steering mechanism is not fully finished, which is why there is no actual footage of the plane flying yet.
