@@ -18,8 +18,10 @@ How the plane works:
 
 -The electronics tray on which the pcb is mounted is fully removable and holds the battery and ESC-controller.
 
-
+!!!The airplane is not 100% finished - the elevator flap mechanism is designed but not built to completion!!!
+           Completion of the description of the unfinished parts on this repository will follow
 
 For anyone reviewing this on stardance:
 The back steering mechanism is not fully finished, which is why there is no actual footage of the plane flying yet.
 The reason for that, is because the potentiometer used in that mechanism was too rigid, so no gears would turn or the motor would not stop spinning because of a lack of feedback. (When testing with other potentiometer the mechanism worked)
+After successfully testing the mechanism, I changed the potentiometer because I suspected it was broken, after some tests failed. Then I glued the new one in, thinking it would work, but it didn't and now im left with a practically unfunctional potentiometer glued to a part I cannot reprint because of lack of filament. So much to explaining why it is not fully finished.
