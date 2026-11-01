@@ -2,11 +2,14 @@ Step 1:
 Printing all necessary parts.
 Use the bambu slicer file or print the parts using the 3d model.
 This step will probably take several days.
+
 Step 2:
 Setting up the electronics.
 Deconstruct the MS18 servo and solder 10cm long wires from the motor to the servo-pcb and the same for the potentiometer.
+![Servo teardown](images/Servo deconstructed.jpg)
 Solder a 9v-battery connector to a wire and then on the voltage step-down converter, then solder two female headers for each output vcc and gnd on the converter.
 Solder the pins on pcb and esp32 if necessary.
+
 Step 3:
 Preparing the rest of the hardware-stuff.
 Cut the 2,6mm spring steel wire into 2x 27,25mm ; 2x 6,5mm and 1x 23,7mm pieces.
