@@ -15,21 +15,39 @@ Solder the pins on pcb and esp32 if necessary.
 Step 3:
 Preparing the rest of the hardware-stuff.
 
-Cut the 2,6mm spring steel wire into 2x 27,25mm ; 2x 6,5mm and 1x 23,7mm pieces.
-
-Cut the 1,5mm wire into 2x 1,28mm and 1x 4mm pieces.
-
-Cut the carbon tube into one 24cm piece.
-
 Insert the heat-brass inserts:
 
 4x M3 in the cross of the nose part, 2x M4 in the nose part, 4x M2 in the electronics-tray, 2x 2mm in each wing beside servo.
 
 Once finished, screw the pcb on the electronics-tray, with the ESC-pins facing towards the arms of the electronics-tray using M2 screws.
 
-Srew the small wing covers on, once the servos are in place.
-
 Screw the motor on the nose using M3 screws.
+
+Cut the 2,6mm spring steel wire into 2x 27,25mm ; 2x 6,5mm and 1x 23,7mm pieces.
+
+Cut the 1,5mm wire into 2x 1,28mm and 1x 4mm pieces.
+
+Cut the carbon tube into one 24cm piece.
+
+Bend the two 6,5cm long 2,6mm wire pieces around the 5cm mark, so there is a 90° angle.
+
+Make dents on the parts of the wire pieces, where they are attached to something:
+
+The last cm on the 27,25cm pieces and 4cm on the other ends.
+About 5mm in the middle of the 23,7mm piece and 2cm on both ends.
+The long ends of the bent pieces, aswell as the very end of the short part.
+
+Shove the long end of the bent wire pieces in the hole of the gearstick with hot glue; make sure there is a 90° angle on both sides of the bent pice relative to the gearstick.
+
+Put the gearstick on the servos head and screw it thight with the screws of the servo, so that the servos position is 180°, when the gearstick is at a downwards 90° angle relative to the servo.
 
 Screw the servos in the wings using one 3D-print screw on the accessible side with the gear already attached to them.
 ![Construction instructions.md](images/Wing%20servo.png)
+Screw the servo cover on, using M2 screws.
+Do the same on the other wing.
+
+Put the wheels on the gears and secure them by adding hot glue on the end of the rest of wire looking out.
+
+Funnel the servos headers through the small rectangular opening in the wing structure.
+
+
