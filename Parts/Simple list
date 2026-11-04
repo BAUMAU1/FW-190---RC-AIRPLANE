@@ -5,6 +5,8 @@ To build one, the following things are needed:
 -4 micro-servos (mg90s) + Miuzei MS18
 -two DX-LR03 Antennas
 -two ESP32 S3 CAM
+-Step down buck converter -> 5V
+-9V Batery
 -Heat brass inserts ( 8x M2; 4x M3; 2x M4 )
 -Screws corresponding to the brass inserts + 6x screws for 3d prints
 -Straight spring steel wire (2,6mm x1m; 1,5mm x10cm)
