@@ -11,6 +11,7 @@ Deconstruct the MS18 servo and take the potentiometer, motor and pcb out.
 Solder 10cm long wires from the motor to the servo-pcb and the same for the potentiometer.
 ![Construction instructions.md](images/Servo%20deconstructed.jpg)
 Solder a 9v-battery connector to a wire and then on the voltage step-down converter, then solder two female headers for each output vcc and gnd on the converter.
+!Make sure to cover the step-down converters contacts or risk short circuiting the esp32!
 
 Solder the pins on pcb and esp32 if necessary - socket strips for esp32 and antenna (both on on pcb), pin headers for the rest.
 
